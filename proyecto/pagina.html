@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "primary-fixed": "#b7eaff",
+                  "tertiary-fixed-dim": "#ffba49",
+                  "surface-bright": "#333a3d",
+                  "surface": "#0e1417",
+                  "surface-container-lowest": "#090f12",
+                  "primary": "#a4e6ff",
+                  "on-secondary-fixed-variant": "#38485d",
+                  "on-primary-fixed-variant": "#004e60",
+                  "inverse-on-surface": "#2b3134",
+                  "on-secondary-container": "#a9bad3",
+                  "secondary-container": "#3a4a5f",
+                  "surface-variant": "#2f3639",
+                  "background": "#0e1417",
+                  "on-tertiary-fixed": "#291800",
+                  "error": "#ffb4ab",
+                  "outline-variant": "#3c494e",
+                  "surface-container-highest": "#2f3639",
+                  "primary-container": "#00d1ff",
+                  "on-secondary": "#213145",
+                  "secondary-fixed": "#d3e4fe",
+                  "tertiary-fixed": "#ffddb1",
+                  "error-container": "#93000a",
+                  "secondary-fixed-dim": "#b7c8e1",
+                  "surface-dim": "#0e1417",
+                  "surface-container-low": "#161d1f",
+                  "surface-tint": "#4cd6ff",
+                  "on-surface-variant": "#bbc9cf",
+                  "primary-fixed-dim": "#4cd6ff",
+                  "tertiary": "#ffd59c",
+                  "on-primary": "#003543",
+                  "on-tertiary-fixed-variant": "#624000",
+                  "on-surface": "#dde3e7",
+                  "on-error-container": "#ffdad6",
+                  "on-error": "#690005",
+                  "on-secondary-fixed": "#0b1c30",
+                  "surface-container-high": "#242b2e",
+                  "on-primary-fixed": "#001f28",
+                  "on-primary-container": "#00566a",
+                  "on-tertiary-container": "#6b4700",
+                  "tertiary-container": "#feb127",
+                  "on-background": "#dde3e7",
+                  "secondary": "#b7c8e1",
+                  "outline": "#859399",
+                  "inverse-primary": "#00677f",
+                  "inverse-surface": "#dde3e7",
+                  "surface-container": "#1a2123",
+                  "on-tertiary": "#442b00"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {
+                  "lg": "32px",
+                  "xl": "48px",
+                  "xs": "8px",
+                  "sm": "16px",
+                  "gutter": "16px",
+                  "margin": "24px",
+                  "base": "4px",
+                  "md": "24px"
+          },
+          "fontFamily": {
+                  "h1": ["Inter"],
+                  "label": ["Inter"],
+                  "data-lg": ["Space Grotesk"],
+                  "body": ["Inter"],
+                  "h2": ["Inter"],
+                  "data-sm": ["Space Grotesk"]
+          },
+          "fontSize": {
+                  "h1": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                  "label": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                  "data-lg": ["18px", {"lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                  "body": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                  "h2": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "data-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      background-color: #0f172a;
+      color: #dde3e7;
+    }
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090f12;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4cd6ff;
+    }
+    .custom-touch-scroll {
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+</head>
+<body class="font-body text-body overflow-hidden h-screen flex flex-col">
+<header class="flex justify-between items-center px-4 h-14 w-full z-50 bg-slate-950 border-b border-slate-800 flex-shrink-0">
+<div class="flex items-center gap-2">
+<span class="text-base font-black tracking-tighter text-slate-100">PICO_OS</span>
+<div class="h-4 w-px bg-slate-800"></div>
+<h1 class="font-mono tracking-tight uppercase text-[9px] text-cyan-400">PicoW Explorer</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1.5">
+<span id="status-dot" class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+<span id="status-text" class="font-mono text-[9px] uppercase tracking-widest text-slate-500 hidden sm:inline">Offline</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">wifi</span>
+<span class="material-symbols-outlined text-slate-500 text-sm">sync</span>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto overflow-x-hidden bg-slate-950 flex flex-col gap-4 pb-20 custom-touch-scroll">
+<section class="px-4 pt-4">
+<div class="flex items-center justify-between p-3 bg-slate-900 border border-slate-800 rounded">
+<div class="flex items-center gap-3">
+<div class="w-7 h-7 flex items-center justify-center bg-slate-800 rounded">
+<span class="material-symbols-outlined text-cyan-400 text-sm">memory</span>
+</div>
+<div>
+<div class="text-cyan-400 font-bold font-mono text-[10px] uppercase tracking-wider leading-none">PicoW_Node_01</div>
+<div id="display-ip" class="text-slate-500 font-mono text-[9px] mt-0.5">0.0.0.0</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-label text-[9px] text-slate-500 uppercase">SD:</span>
+<span class="font-mono text-[10px] text-slate-300">84%</span>
+</div>
+</div>
+</section>
+<section class="px-4 space-y-3">
+<div class="bg-slate-900 border border-slate-800 p-4 space-y-3">
+<div class="space-y-1.5">
+<label class="font-label text-slate-500 text-[10px] uppercase block">IP ADDRESS ENDPOINT:</label>
+<div class="relative w-full">
+<input id="input-ip" class="w-full bg-slate-950 border border-slate-800 text-cyan-400 font-mono text-sm px-3 py-2.5 focus:outline-none focus:border-cyan-400 transition-colors" type="text" value="192.168.1.45"/>
+<span class="absolute right-3 top-2.5 material-symbols-outlined text-slate-600 text-sm">edit</span>
+</div>
+</div>
+<button id="btn-update" class="w-full bg-primary py-2.5 text-slate-950 font-bold font-label uppercase text-[10px] hover:bg-primary-fixed transition-colors active:scale-[0.98]">Update Endpoint</button>
+</div>
+<div class="flex gap-2">
+<button id="btn-fetch" class="flex-1 py-3 bg-slate-800 border border-slate-700 hover:border-cyan-400 text-slate-300 font-label uppercase text-[9px] flex flex-col items-center justify-center gap-1 transition-all active:bg-slate-700">
+<span class="material-symbols-outlined text-base">download</span>
+        Fetch Data
+      </button>
+<button id="btn-clear" class="flex-1 py-3 bg-slate-800 border border-slate-700 hover:border-error text-slate-300 font-label uppercase text-[9px] flex flex-col items-center justify-center gap-1 transition-all active:bg-slate-700">
+<span class="material-symbols-outlined text-base">delete_sweep</span>
+        Clear View
+      </button>
+</div>
+</section>
+<section class="mx-4 flex flex-col bg-slate-900 border border-slate-800 overflow-hidden relative min-h-[400px]">
+<div class="flex items-center justify-between px-3 py-2 bg-slate-950 border-b border-slate-800">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-cyan-400 text-sm flex-shrink-0">description</span>
+<span class="font-mono text-[10px] text-slate-400 tracking-tight truncate">/mnt/sd/datos.txt</span>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="flex items-center gap-1.5 mr-2">
+<span class="font-label text-[8px] text-slate-500 uppercase">Auto</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-6 h-3.5 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:border-slate-300 after:border after:rounded-full after:h-2.5 after:w-2.5 after:transition-all peer-checked:bg-cyan-900 peer-checked:after:bg-cyan-400"></div>
+</label>
+</div>
+<span class="material-symbols-outlined text-slate-500 text-base">fullscreen</span>
+</div>
+</div>
+<div class="flex-1 overflow-x-auto custom-touch-scroll bg-slate-950/30 font-mono text-[11px] leading-relaxed relative">
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px); background-size: 15px 15px;"></div>
+<div class="relative z-10 p-3 min-w-max">
+<div id="data-container" class="space-y-1">
+    <div class="text-slate-500 font-italic">Ready to connect...</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-4">
+<div class="bg-slate-900/50 border border-slate-800 p-2 flex justify-between">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="font-label text-[7px] text-slate-500 uppercase">Sync</span>
+<span id="sync-time" class="font-mono text-[9px] text-slate-300 leading-none">--:--:--</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-[7px] text-slate-500 uppercase">Status</span>
+<span id="byte-size" class="font-mono text-[9px] text-slate-300 leading-none">0B</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label text-[7px] text-slate-500 uppercase">Node</span>
+<span class="font-mono text-[9px] text-slate-300 leading-none">PICO-W-SERVER</span>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-slate-900 border-t border-slate-800 flex items-center justify-around z-50 px-2">
+<a class="flex flex-col items-center justify-center gap-1 text-slate-500 hover:text-slate-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">analytics</span>
+<span class="font-mono text-[8px] uppercase tracking-tighter">Telemetry</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-cyan-400 border-t-2 border-cyan-400 h-full pt-0.5" href="#">
+<span class="material-symbols-outlined text-xl">folder_open</span>
+<span class="font-mono text-[8px] uppercase tracking-tighter font-bold">FS</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-slate-500 hover:text-slate-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">settings_input_component</span>
+<span class="font-mono text-[8px] uppercase tracking-tighter">Network</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-slate-500 hover:text-slate-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">terminal</span>
+<span class="font-mono text-[8px] uppercase tracking-tighter">Logs</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-slate-500 hover:text-slate-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">menu</span>
+<span class="font-mono text-[8px] uppercase tracking-tighter">More</span>
+</a>
+</nav>
+
+<script>
+    // ELEMENTOS DEL DOM
+    const btnFetch = document.getElementById('btn-fetch');
+    const btnClear = document.getElementById('btn-clear');
+    const btnUpdate = document.getElementById('btn-update');
+    const inputIp = document.getElementById('input-ip');
+    const dataContainer = document.getElementById('data-container');
+    const displayIp = document.getElementById('display-ip');
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+    const syncTime = document.getElementById('sync-time');
+    const byteSize = document.getElementById('byte-size');
+
+    // FUNCIONALIDAD: FETCH DATA
+    btnFetch.addEventListener('click', async () => {
+        const ip = inputIp.value.trim();
+        if (!ip) return alert("Ingresa una IP válida");
+
+        dataContainer.innerHTML = '<div class="animate-pulse text-cyan-400">[SYSTEM] Iniciando petición a la Pico...</div>';
+        
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 seg timeout
+
+            const response = await fetch(`http://${ip}/archivo`, { signal: controller.signal });
+            clearTimeout(timeoutId);
+
+            if (!response.ok) throw new Error('Servidor no responde');
+            
+            const data = await response.text();
+            
+            // Actualizar Interfaz
+            statusDot.classList.replace('bg-slate-500', 'bg-cyan-400');
+            statusDot.classList.add('animate-pulse');
+            statusText.innerText = "Connected";
+            statusText.classList.replace('text-slate-500', 'text-cyan-400');
+            syncTime.innerText = new Date().toLocaleTimeString();
+            byteSize.innerText = `${data.length} bytes`;
+            
+            // Renderizar lineas
+            dataContainer.innerHTML = '';
+            const lines = data.split('\n');
+            lines.forEach((line, index) => {
+                if(line.trim() === "") return;
+                dataContainer.innerHTML += `
+                    <div class="flex gap-3 group">
+                        <span class="w-5 text-right text-slate-700 select-none text-[10px]">${(index + 1).toString().padStart(2, '0')}</span>
+                        <span class="text-slate-300 whitespace-nowrap">${line}</span>
+                    </div>`;
+            });
+
+        } catch (error) {
+            dataContainer.innerHTML = `<div class="text-error">[ERROR] No se pudo conectar: ${error.message}</div>`;
+            statusDot.classList.replace('bg-cyan-400', 'bg-slate-500');
+            statusDot.classList.remove('animate-pulse');
+            statusText.innerText = "Offline";
+        }
+    });
+
+    // FUNCIONALIDAD: UPDATE IP DISPLAY
+    btnUpdate.addEventListener('click', () => {
+        displayIp.innerText = inputIp.value;
+        const btn = btnUpdate;
+        btn.innerText = "IP UPDATED";
+        setTimeout(() => btn.innerText = "UPDATE ENDPOINT", 2000);
+    });
+
+    // FUNCIONALIDAD: CLEAR VIEW
+    btnClear.addEventListener('click', () => {
+        dataContainer.innerHTML = '<div class="text-slate-500 font-italic">View cleared. Ready for next sync.</div>';
+        byteSize.innerText = "0B";
+    });
+</script>
+</body></html>
+
