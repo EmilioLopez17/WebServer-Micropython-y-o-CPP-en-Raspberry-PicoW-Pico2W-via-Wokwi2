@@ -1,0 +1,21 @@
+=== SISTEMA PICOW ===
+
+Temperatura CPU: 36.5 C
+Humedad: 58 %
+Voltaje: 4.9 V
+
+Estado WiFi: CONECTADO
+IP: 192.168.1.45
+
+Sensores:
+- Sensor PIR: ACTIVO
+- Sensor Luz: OK
+- Sensor Temp: OK
+
+Ultima actualizacion:
+06/05/2026 14:32:10
+
+Logs:
+[INFO] Sistema iniciado
+[INFO] Conexion WiFi exitosa
+[OK] Servidor HTTP activo
